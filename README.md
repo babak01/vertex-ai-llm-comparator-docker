@@ -26,7 +26,7 @@ docker pull ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
 
 1. Ensure you have a **Google Cloud service account key** file (`.json` format) with access to Vertex AI.
 
-2. Run the Docker container, replacing `/path/to/your/service_account.json` with the actual path to your credentials file on your local machine:
+2. Run the Docker container. On Unix-based systems (Linux/macOS), use the following command, replacing `/path/to/your/service_account.json` with the actual path to your credentials file:
 
    ```bash
    docker run -p 8501:8501 \
@@ -35,10 +35,19 @@ docker pull ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
        ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
    ```
 
-   This command:
-   - Exposes the Streamlit app on port 8501.
-   - Sets the `GOOGLE_APPLICATION_CREDENTIALS` environment variable within the container.
-   - Mounts your service account JSON file into the container at `/app/service_account.json`.
+   On **Windows PowerShell**, use the following command with backticks (`` ` ``) for line continuation:
+
+   ```powershell
+   docker run -p 8501:8501 `
+       -e GOOGLE_APPLICATION_CREDENTIALS=/app/service_account.json `
+       -v /path/to/your/service_account.json:/app/service_account.json `
+       ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
+   ```
+
+   These commands:
+   - Expose the Streamlit app on port 8501.
+   - Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable within the container.
+   - Mount your service account JSON file into the container at `/app/service_account.json`.
 
 3. Open your browser and go to [http://localhost:8501](http://localhost:8501) to access the app.
 
