@@ -22,9 +22,34 @@ The Docker image for this app is hosted on GitHub Container Registry (GHCR). You
 docker pull ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
 ```
 
+## Setting Up Google Cloud and Enabling Vertex AI API
+
+To run this app, you’ll need a Google Cloud Project with Vertex AI API enabled and a service account with the necessary permissions.
+
+1. **Create a Google Cloud Project** (if you don’t have one already):
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   - Click on **Select a project** > **New Project** and follow the prompts.
+
+2. **Enable the Vertex AI API**:
+   - In the Google Cloud Console, navigate to **APIs & Services** > **Library**.
+   - Search for **Vertex AI API** and click on it.
+   - Click **Enable** to activate the API for your project.
+
+3. **Create a Service Account**:
+   - Go to **IAM & Admin** > **Service Accounts** in the Cloud Console.
+   - Click **Create Service Account** and enter a name and description.
+   - Under **Grant this service account access to the project**, add the following roles:
+     - `Vertex AI User`
+     - `Storage Object Viewer` (for any data stored in Google Cloud Storage, if required)
+
+4. **Download the Service Account Key**:
+   - After creating the service account, go to the **Keys** tab.
+   - Click **Add Key** > **Create New Key** and select **JSON**.
+   - Save the downloaded JSON key file securely; this file will be used to authenticate the app.
+
 ## Running the App
 
-1. Ensure you have a **Google Cloud service account key** file (`.json` format) with access to Vertex AI.
+1. Ensure you have the Google Cloud service account key file (`.json` format) that you downloaded in the previous step.
 
 2. Run the Docker container. On Unix-based systems (Linux/macOS), use the following command, replacing `/path/to/your/service_account.json` with the actual path to your credentials file:
 
@@ -40,7 +65,7 @@ docker pull ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
    ```powershell
    docker run -p 8501:8501 `
        -e GOOGLE_APPLICATION_CREDENTIALS=/app/service_account.json `
-       -v /path/to/your/service_account.json:/app/service_account.json `
+       -v C:\path\to\your\service_account.json:/app/service_account.json `
        ghcr.io/babak01/vertex-ai-llm-comparator-docker:latest
    ```
 
