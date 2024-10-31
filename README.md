@@ -1,6 +1,8 @@
 
 # Vertex AI LLM Comparator Docker Image
 
+![Demo of the Vertex AI LLM Comparator](Vertex AI LLM Comparator Web App.gif)
+
 This repository provides a pre-built Docker image to run the Vertex AI LLM Comparator app, which allows users to compare responses from different LLM frameworks—Autogen, LangChain, and LangGraph—using Google Cloud’s Vertex AI.
 
 ## About the Project
